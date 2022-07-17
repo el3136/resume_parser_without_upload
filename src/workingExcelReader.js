@@ -1,3 +1,4 @@
+import logo from './logo.svg';
 import './App.css';
 import * as XLSX from 'xlsx';
 import React, { useState } from 'react';
@@ -39,20 +40,8 @@ function App() {
 
   // Python, C, C++, Java, JavaScript, Rust, Golang, SQL
 
-  const [searchTerm, setSearchTerm] = useState("");
-
   return (
-    <div className='App'>
-      <br />
-      
-      <input type="text" placeholder='Search...' onChange={(event)=> {
-        setSearchTerm(event.target.value);
-      }} />
-
-      <br />
-      <p>Type a Programming Language: Python, C, C++, Java, JavaScript, Rust, Golang, SQL</p>
-      <br />
-
+    <div>
       <input type="file" onChange={(e)=>{
         const file = e.target.files[0];
         readExcel(file);
@@ -70,13 +59,7 @@ function App() {
         </thead>
         <tbody class="table-group-divider">
 
-          {items.filter((val) => {
-            if (searchTerm == "") {
-              return val;
-            } else if (val.Languages.toLowerCase().includes(searchTerm.toLowerCase())) {
-              return val;
-            }
-          }).map((d)=>(
+          {items.map((d)=>(
             <tr key={d.id}>
               <th>{d.id}</th>
               <td>{d.first_name}</td>
